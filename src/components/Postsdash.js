@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaBell, FaArrowLeft } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
+import Admin from './Admin';
+
 
 const Postsdash = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,13 +39,13 @@ const Postsdash = () => {
           <h2 className="text-2xl font-bold mb-6">Admin Dashboard</h2>
           <ul className="space-y-4">
             <li>
-              <Link to="/dashboard" className="hover:text-gray-300">Dashboard</Link>
+              <Link to="/posts" className="hover:text-gray-300">Dashboard</Link>
             </li>
             <li>
               <Link to="/allposts" className="hover:text-gray-300">All Posts</Link>
             </li>
             <li>
-              <Link to="/create-posts" className="hover:text-gray-300">Create Posts</Link>
+              <Link to="/dashboard" className="hover:text-gray-300">Create Posts</Link>
             </li>
           </ul>
         </div>
@@ -70,15 +72,13 @@ const Postsdash = () => {
               <Link to="/register/term" className="block px-4 py-2 hover:bg-blue-100" onClick={closeDropdown}>
                 Policy
               </Link>
-              <Link to="/logout" className="block px-4 py-2 hover:bg-blue-100" onClick={closeDropdown}>
+              <Link to="/" className="block px-4 py-2 hover:bg-blue-100" onClick={closeDropdown}>
                 Logout
               </Link>
             </div>
             )}
           </div>
         </header>
-
-        {/* Other components... */}
       </div>
     </div>
   );

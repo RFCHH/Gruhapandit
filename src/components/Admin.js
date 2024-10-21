@@ -155,7 +155,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axiosInstance from './AxiosInstance';
-import DashHeader from './DashHeader';
+// import DashHeader from './DashHeader';
+import Postsdash from './Postsdash';
 
 const Admin = () => {
   const [tutors, setTutors] = useState([]);
@@ -239,16 +240,10 @@ useEffect(() => {
 
   return (
     <>
-        <DashHeader/>
-    <div className="flex flex-col items-center mt-48">
+        <Postsdash/>
+    <div className="flex flex-col items-center mt-[-40%] ml-[20px]">
       
       {errorMessage && <p className="text-red-500">{errorMessage}</p>} {/* Display error */}
-      
-      <div className="border-1 shadow-md hover:bg-slate-500 border-black rounded-lg h-14 w-30 flex mr-[-80%] justify-center p-4 bg-blue-600 text-white">
-        <Link to="/Postsdash">
-          <button className="border-none rounded-xl">Create Post</button>
-        </Link>
-      </div>
 
       {/* Tutor Section */}
       <div className="w-full text-left mb-4 ml-[40%]">

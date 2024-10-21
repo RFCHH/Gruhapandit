@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { AiTwotoneProfile } from 'react-icons/ai';
 import axiosInstance from './AxiosInstance';  
 import DashHeader from './DashHeader';
+import Postsdash from './Postsdash';
+
 
 const CreatePosts = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -106,11 +108,19 @@ const CreatePosts = () => {
       }
     }
   };
+  const [currentDate, setCurrentDate] = useState('');
+  useEffect(() => {
+    const today = new Date();
+    const options = { month: 'short', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString('en-US', options);
+    setCurrentDate(formattedDate);
+  }, []);
+
 
   return (
     <div>
-      <DashHeader/>
-      <div className="flex justify-center mt-[20%] space-x-4">
+      <Postsdash/>
+      <div className="flex justify-center mt-[20%] space-x-4 mt-[-35%]">
         <button onClick={() => togglePopup('student')} className="bg-blue-600 text-white py-2 px-4 rounded flex items-center">
           <AiTwotoneProfile className="text-2xl mr-2" /> Students
         </button>
@@ -123,7 +133,7 @@ const CreatePosts = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="w-1/2 p-4 bg-white shadow-lg border-2 rounded-lg">
             <button onClick={() => togglePopup('')} className="border-2 border-black float-right px-2">X</button>
-            <h1 className="text-lg">Title: Available tuitions for Oct 28.</h1>
+            <h1 className='text-lg'>Title: Available tuitions for {currentDate}.</h1>
             <p>Content: {selectedRole === 'student' ? 'Dear Student' : 'Dear Tutor'}, we are excited to announce available tuitions for the month of 2024.</p>
             <br />
             <div className='grid grid-cols-2 gap-4 p-4'>
