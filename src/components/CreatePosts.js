@@ -48,7 +48,7 @@ const CreatePosts = () => {
 
   const validate = () => {
     const newErrors = {};
-    const nameRegex = /^[A-Za-z\s]+$/;
+    const nameRegex = /^[A-Za-z]+(([',. -][A-Za-z]+)*)?$/;
     const subjectRegex = /^[A-Za-z0-9\s,]+$/;
 
     if (!formData.firstName) newErrors.firstName = 'Name is required';
@@ -80,7 +80,8 @@ const CreatePosts = () => {
 
         // Different API URL and payload based on selected roles
         if (selectedRole === 'student') {
-          url = 'https://hrms-repository-gruhabase.onrender.com/tuition-application/studentAdvertisement/create';
+          // url = '/tuition-application/studentAdvertisement/create';
+          url = 'tuition-application/studentAdvertisement/create';
           payload = {
             firstName: formData.firstName,
             subjectsLookingFor: formData.subjectsLookingFor,
@@ -88,7 +89,8 @@ const CreatePosts = () => {
             availableTimings: formData.availableTimings,
           };
         } else if (selectedRole === 'tutor') {
-          url = 'https://hrms-repository-gruhabase.onrender.com/tuition-application/tutorAdvertisement/create';
+          // url = 'tuition-application/tutorAdvertisement/create';
+          url = 'tuition-application/tutorAdvertisement/create';
           payload = {
             firstName: formData.firstName,
             subjectsYouAreExpertAt: formData.subjectsYouAreExpertAt, // For tutors
@@ -120,7 +122,7 @@ const CreatePosts = () => {
   return (
     <div>
       <Postsdash/>
-      <div className="flex justify-center mt-[20%] space-x-4 mt-[-35%]">
+      <div className="flex justify-center  space-x-4 -mt-96">
         <button onClick={() => togglePopup('student')} className="bg-blue-600 text-white py-2 px-4 rounded flex items-center">
           <AiTwotoneProfile className="text-2xl mr-2" /> Students
         </button>
@@ -151,12 +153,12 @@ const CreatePosts = () => {
                 {errors.firstName && <p className='text-red-500 text-sm'>{errors.firstName}</p>}
               </div>
               <div>
-                <label className='block'>{selectedRole === 'student' ? 'Subject' : 'Expertise'}:</label>
+                <label className='block'>{selectedRole === 'student' ? 'Subject' : 'Subject'}:</label>
                 <input
                   type='text'
                   id={selectedRole === 'student' ? 'subjectsLookingFor' : 'subjectsYouAreExpertAt'}
                   maxLength='30'
-                  placeholder={selectedRole === 'student' ? 'subject' : 'expertise'}
+                  placeholder={selectedRole === 'student' ? 'subject' : 'subject'}
                   className={`border-2 border-black w-full p-2 ${errors[selectedRole === 'student' ? 'subjectsLookingFor' : 'subjectsYouAreExpertAt'] ? 'border-red-500' : ''}`}
                   value={selectedRole === 'student' ? formData.subjectsLookingFor : formData.subjectsYouAreExpertAt}
                   onChange={handleInputChange}

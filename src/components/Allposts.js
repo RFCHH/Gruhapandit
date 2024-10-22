@@ -11,7 +11,7 @@ function Allposts() {
   const fetchTutorData = async () => {
     try {
       const response = await axiosInstance.get(
-        "https://hrms-repository-gruhabase.onrender.com/tuition-application/tutorAdvertisement/"
+        "/tuition-application/tutorAdvertisement/"
       );
       setTutorData(response.data); // Set the tutor data received from the API
       setStudentData(null); // Clear student data
@@ -25,8 +25,7 @@ function Allposts() {
   const fetchStudentData = async () => {
     try {
       const response = await axiosInstance.get(
-        "https://hrms-repository-gruhabase.onrender.com/tuition-application/studentAdvertisement/"
-      );
+        "/tuition-application/studentAdvertisement/");
       setStudentData(response.data); // Set the student data received from the API
       setTutorData(null); // Clear tutor data
       setError(null); // Reset any previous errors
@@ -38,7 +37,7 @@ function Allposts() {
   return (
     <>
     <Postsdash/>
-    <div className="container mx-auto mt-[-30%] ml-[7rem] p-6">
+    <div className="container mx-auto mt-[-40%] ml-[7rem] p-6">
       <h1 className="text-3xl font-bold text-center mb-6">All Posts</h1>
 
       {/* Buttons to fetch data */}
@@ -64,7 +63,7 @@ function Allposts() {
 
       {/* Display tutor data if available */}
       {tutorData && (
-        <div>
+        <div className="ml-56">
           <h2 className="text-2xl font-semibold mb-4">Tutor Data</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {tutorData.map((tutor) => (
@@ -90,7 +89,7 @@ function Allposts() {
 
       {/* Display student data if available */}
       {studentData && (
-        <div>
+        <div  className="ml-56">
           <h2 className="text-2xl font-semibold mb-4">Student Data</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {studentData.map((student) => (

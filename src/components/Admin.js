@@ -209,7 +209,8 @@ useEffect(() => {
     try {
       // No need to fetch the jwtToken or add headers manually
       const response = await axiosInstance.get('/tuition-application/admin/getAdminPageData');
-
+      // const response = await axiosInstance.get('https://tution-application.onrender.com/tuition-application/admin/getAdminPageData');
+     
       // Check if response is valid
       if (response && response.data) {
         const { students,teachers} = response.data;
@@ -228,25 +229,35 @@ useEffect(() => {
 }, []);
 
   // Filter tutors and students based on search input
+  // const filteredTutors = tutors.filter((tutor) =>
+  //   tutor.firstName.toLowerCase().includes(tutorSearch.toLowerCase()) ||
+  //   tutor.subjectsLookingFor.toLowerCase().includes(tutorSearch.toLowerCase())
+  // );
   const filteredTutors = tutors.filter((tutor) =>
-    tutor.firstName.toLowerCase().includes(tutorSearch.toLowerCase()) ||
-    tutor.subjectsLookingFor.toLowerCase().includes(tutorSearch.toLowerCase())
+    (tutor.firstName && tutor.firstName.toLowerCase().includes(tutorSearch.toLowerCase())) ||
+    (tutor.subjectsLookingFor && tutor.subjectsLookingFor.toLowerCase().includes(tutorSearch.toLowerCase()))
   );
+  
 
+  // const filteredStudents = students.filter((student) =>
+  //   student.firstName.toLowerCase().includes(studentSearch.toLowerCase()) ||
+  //   student.subjectsLookingFor.toLowerCase().includes(studentSearch.toLowerCase())
+  // );
   const filteredStudents = students.filter((student) =>
-    student.firstName.toLowerCase().includes(studentSearch.toLowerCase()) ||
-    student.subjectsLookingFor.toLowerCase().includes(studentSearch.toLowerCase())
+    (student.firstName && student.firstName.toLowerCase().includes(studentSearch.toLowerCase())) ||
+    (student.subjectsLookingFor && student.subjectsLookingFor.toLowerCase().includes(studentSearch.toLowerCase()))
   );
+  
 
   return (
     <>
         <Postsdash/>
-    <div className="flex flex-col items-center mt-[-40%] ml-[20px]">
+    <div className="flex flex-col items-center -mt-96 ml-[20px] ">
       
       {errorMessage && <p className="text-red-500">{errorMessage}</p>} {/* Display error */}
 
       {/* Tutor Section */}
-      <div className="w-full text-left mb-4 ml-[40%]">
+      <div className="w-full text-left mb-4 ml-[40%] -mt-44">
         <h1 className="text-2xl font-bold">Tutors</h1>
         <div className="flex items-center mt-2 ml-[10%]">
           <input
@@ -260,7 +271,7 @@ useEffect(() => {
       </div>
 
       {/* Tutors Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto ml-36">
         <table className="border-collapse border-4 border-black w-full text-center">
           <thead>
             <tr className="bg-gray-200">
@@ -300,7 +311,7 @@ useEffect(() => {
       </div>
 
       {/* Students Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto ml-36">
         <table className="border-collapse border-4 border-black w-full text-center">
           <thead>
             <tr className="bg-gray-200">

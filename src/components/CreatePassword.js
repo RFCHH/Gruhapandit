@@ -176,7 +176,8 @@ const CreatePassword = () => {
               type={showPassword ? "text" : "password"}
               id="password"
               value={password}
-              maxLength={8}
+              minLength={8}
+              maxLength={15}
               onChange={handlePasswordChange}
               required
               className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm ${
